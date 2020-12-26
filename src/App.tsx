@@ -5,6 +5,7 @@ import  {MultiStepForm}  from './components/MultiStepForm';
 function App() {
   return (
     <div className="App">
+      <div className="main"></div>
      <MultiStepForm/>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, Card, CardContent, CircularProgress, createStyles, Grid, Icon, LinearProgress, makeStyles, Step, StepConnector, StepIconProps, StepLabel, Stepper, Theme, withStyles } from "@material-ui/core";
+import { Button, CardContent, CircularProgress, Grid, Icon,  makeStyles, Step, StepConnector, StepIconProps, StepLabel, Stepper,withStyles } from "@material-ui/core";
 import { Field, Form, Formik, FormikConfig, FormikValues } from "formik";
 import { TextField } from "formik-material-ui";
 import * as yup from 'yup'
@@ -10,7 +10,6 @@ import ContactMailIcon from '@material-ui/icons/ContactMail';
 import CastForEducationIcon from '@material-ui/icons/CastForEducation';
 
 import clsx from 'clsx';
-import { Preview } from "./Preview";
 
 
 const ColorlibConnector = withStyles({
@@ -82,35 +81,23 @@ function ColorlibStepIcon(props: StepIconProps) {
     );
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            width: '100%',
-        },
-        button: {
-            marginRight: theme.spacing(1),
-        },
-        instructions: {
-            marginTop: theme.spacing(1),
-            marginBottom: theme.spacing(1),
-        },
-    }),
-);
 
 
 const sleep = (time: any) => new Promise((acc) => setTimeout(acc, time));
 
 export const MultiStepForm = () => {
+
+//------------------Actual Data View of Form---------------------------------
+
     return (
         <div className="middle">
-            <Card className="size">
-                <CardContent>
+               <CardContent>
                     <FormikStepper
                         initialValues={{
                             FirstName: "",
                             LastName: "",
                             AdressLine: "",
-                            province:"",
+                            province: "",
                             Email: "",
                             Password: "",
                             username: "",
@@ -124,7 +111,8 @@ export const MultiStepForm = () => {
                         onSubmit={async (values) => {
                             await sleep(3000)
                             console.log(values);
-                            alert(JSON.stringify(values));
+                            alert(JSON.stringify("Congrats! Your Form has been submitted"));
+
 
                         }}
                     >
@@ -134,6 +122,8 @@ export const MultiStepForm = () => {
                                 LastName: yup.string().required().max(13, "Name should be less then 13 characters"),
                             })}
                         >
+                             <h3>Personal Information</h3>
+                          <br/>
                             <Grid container spacing={3}>
                                 <Grid item xs={12} sm={6}>
                                     <Field
@@ -173,7 +163,7 @@ export const MultiStepForm = () => {
                                         fullWidth
                                     />
                                 </Grid>
-                               
+
                                 <Grid item xs={12} >
                                     <Field
                                         component={TextField}
@@ -186,8 +176,8 @@ export const MultiStepForm = () => {
                                         fullWidth
                                     />
                                 </Grid>
-                                
-                              
+
+
                             </Grid>
                         </FormikStep>
                         <FormikStep label="Account"
@@ -195,6 +185,8 @@ export const MultiStepForm = () => {
                                 Password: yup.string().required().min(6, "Min 6 chracters"),
                                 age: yup.number().required().min(18, "Only Adults are allowed")
                             })}>
+                                  <h3>Account Information</h3>
+                          <br/>
                             <Grid container spacing={3}>
                                 <Grid item xs={12} sm={6}>
                                     <Field
@@ -244,6 +236,7 @@ export const MultiStepForm = () => {
                                         color="secondary"
                                         fullWidth
                                         required
+                                    
                                     />
                                 </Grid>
                             </Grid>
@@ -251,6 +244,8 @@ export const MultiStepForm = () => {
 
                         </FormikStep>
                         <FormikStep label="Educational Qualification">
+                        <h3>Educational Information</h3>
+                          <br/>
                             <Grid container spacing={3}>
                                 <Grid item xs={12} sm={6}>
                                     <Field
@@ -276,7 +271,7 @@ export const MultiStepForm = () => {
                                         fullWidth
                                     />
                                 </Grid>
-                               
+
                                 <Grid item xs={12}>
                                     <Field
                                         component={TextField}
@@ -302,15 +297,191 @@ export const MultiStepForm = () => {
                                     />
                                 </Grid>
                             </Grid>
-
                         </FormikStep>
 
+
+
+                      <FormikStep label="Preview">
+                          <h3>Preview Your Form</h3>
+                          <br/>
+                            <Grid container spacing={3}>
+                                 <Grid item xs={12} sm={2}>
+                                    <Field
+                                        component={TextField}
+                                        name="FirstName"
+                                        type="text"
+                                        label="First Name"
+                                        variant="outlined"
+                                        color="secondary"
+                                        
+                                        required
+                                        disabled
+                                        id="standard-disabled" 
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={2}>
+                                    <Field
+                                        component={TextField}
+                                        name="LastName"
+                                        type="text"
+                                        label="Last Name"
+                                        variant="outlined"
+                                        color="secondary"
+                                        
+                                        required
+                                        disabled
+                                        id="standard-disabled" 
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={2}>
+                                    <Field
+                                        component={TextField}
+                                        name="username"
+                                        type="text"
+                                        label="UserName"
+                                        variant="outlined"
+                                        color="secondary"
+                                        disabled
+                                        id="standard-disabled" 
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={2}>
+                                    <Field
+                                        component={TextField}
+                                        name="age"
+                                        type="number"
+                                        label="Age"                                       
+                                        variant="outlined"
+                                        color="secondary"
+                                        
+                                        required
+                                        disabled
+                                        id="standard-disabled" 
+                                    />
+                                </Grid>
+                                
+                               
+                                <Grid item xs={12} sm={2}>
+                                    <Field
+                                        component={TextField}
+                                        name="AdressLine"
+                                        type="text"
+                                        label="Adress Line"
+                                        variant="outlined"
+                                        color="secondary"
+                                        
+                                        disabled
+                                        id="standard-disabled" 
+                                    />
+                                </Grid>   
+                                <Grid item xs={12}  sm={2}>
+                                    <Field
+                                        component={TextField}
+                                        name="province"
+                                        type="text"
+                                        label="Province"
+                                        variant="outlined"
+                                        color="secondary"
+                                        
+                                        disabled
+                                        id="standard-disabled" 
+                                    />
+                                </Grid>
+ 
+                                <Grid item xs={12} sm={2}>
+                                    <Field
+                                        component={TextField}
+                                        name="SchoolName"
+                                        type="text"
+                                        label="School Name"
+                                        variant="outlined"
+                                        color="secondary"
+                                        
+                                        disabled
+                                        id="standard-disabled" 
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={2}>
+                                    <Field
+                                        component={TextField}
+                                        name="CollegeName"
+                                        type="text"
+                                        label="College Name"
+                                        variant="outlined"
+                                        color="secondary"
+                                        
+                                        disabled
+                                        id="standard-disabled"
+                                    />
+                                </Grid>
+
+                                <Grid item xs={12} sm={2}>
+                                    <Field
+                                        component={TextField}
+                                        name="UniversityName"
+                                        type="text"
+                                        label="University Name"
+                                        variant="outlined"
+                                        color="secondary"
+                                        
+                                        disabled
+                                        id="standard-disabled"
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={2}>
+                                    <Field
+                                        component={TextField}
+                                        name="DegreeName"
+                                        type="text"
+                                        label="Program/Degree"
+                                        variant="outlined"
+                                        color="secondary"
+                                        
+                                        disabled
+                                        id="standard-disabled"
+                                    />
+                                </Grid>   
+                                <Grid item xs={12} sm={2} >
+                                    <Field
+                                        component={TextField}
+                                        name="Email"
+                                        type="email"
+                                        label="Email"
+                                        variant="outlined"
+                                        color="secondary"
+                                        
+                                        disabled
+                                        id="standard-disabled"
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={2}>
+                                    <Field
+                                        component={TextField}
+                                        name="Password"
+                                        type="text"
+                                        label="Password"
+                                        variant="outlined"
+                                        color="secondary"
+                                        disabled
+                                        id="standard-disabled"
+                                        required
+                                        
+                                    />
+                                </Grid>                  
+                            </Grid> 
+
+                      </FormikStep>
                     </FormikStepper>
                 </CardContent>
-            </Card>
+          
         </div>
     )
 }
+
+
+//----------------------Formik Step function for making steps of Form-----------------------
+
+
 interface formikStepType extends Pick<FormikConfig<FormikValues>, "children" | "validationSchema"> {
     label: String
 }
@@ -319,17 +490,20 @@ export const FormikStep = ({ children }: formikStepType) => {
     return <>{children}</>
 }
 
+//----------------------Formik Stepper function for get steps data of Form-----------------------
+
 
 export const FormikStepper = ({ children, ...props }: FormikConfig<FormikValues>) => {
     const childrenArray = React.Children.toArray(children) as React.ReactElement<formikStepType>[];
     const [step, setstep] = useState(0);
     const currentStep = childrenArray[step];
+
     return (
         <Formik
             {...props}
             validationSchema={currentStep.props.validationSchema}
             onSubmit={async (values, action) => {
-                if (step == childrenArray.length - 1) {
+                if (step === childrenArray.length - 1) {
                     await props.onSubmit(values, action);
                 }
                 else {
@@ -350,14 +524,16 @@ export const FormikStepper = ({ children, ...props }: FormikConfig<FormikValues>
                 {currentStep}
                 <br />
                 <br />
-                { step > 0 ? <Button disabled={isSubmitting} onClick={() => setstep((s) => s - 1)}  variant="contained"
+                { step > 0 ? <Button disabled={isSubmitting} onClick={() => setstep((s) => s - 1)} variant="contained"
                     color="primary">Back</Button> : null} &nbsp;
                 <Button disabled={isSubmitting} startIcon={isSubmitting ? <CircularProgress color="secondary" size="1rem" /> : null} type="submit"
-                 variant="contained"
+                    variant="contained"
                     color="primary"
-                    endIcon={<Icon>send</Icon>}> {step == childrenArray.length - 1 ? "Submit" : "Next"}</Button>
+                    endIcon={<Icon>send</Icon>}> {step === childrenArray.length - 1 ? "Submit" : "Next"}</Button>
             </Form>)}
 
         </Formik>
     )
 }
+
+

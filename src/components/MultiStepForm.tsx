@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, CardContent, CircularProgress, Grid, Icon,  makeStyles, Step, StepConnector, StepIconProps, StepLabel, Stepper,withStyles } from "@material-ui/core";
 import { Field, Form, Formik, FormikConfig, FormikValues } from "formik";
 import { TextField } from "formik-material-ui";
+import OfflinePinIcon from '@material-ui/icons/OfflinePin';
 import * as yup from 'yup'
 import '../App.css'
 
@@ -67,6 +68,7 @@ function ColorlibStepIcon(props: StepIconProps) {
         1: <PersonIcon />,
         2: <ContactMailIcon />,
         3: <CastForEducationIcon />,
+        4: <OfflinePinIcon/>
     };
 
     return (
